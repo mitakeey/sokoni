@@ -1,7 +1,19 @@
 /* creating jquery's load function */
-$(function(){ // creating a function that pulls other js
-    loadScript()
-})
+
+
+$(function(){ 
+    /*creating a function that pulls other js by referencing urls of script files to use */
+    loadScript('scripts/products.js', productSetup) 
+    loadScript('scripts/categories.js', categorySetup)
+});
+
+var categorySetup = function(){
+    let categories= new categories()
+    categoro.getAllCategories()
+}
+var productSetup = function(){
+    console.log('product here')
+}
 
 function loadScript(url, callback){
     var head = document.head
