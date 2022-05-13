@@ -1,6 +1,6 @@
 /* fetch all categories of products from the api*/
 
-class categories{
+class Categories{
     constructor(){
         this.apiUrl = 'https://fakestoreapi.com/'
     }
@@ -10,8 +10,16 @@ class categories{
         $.ajax({
             type: 'GET',
             url : this.apiUrl + 'products/categories',
-            success: function(data){
-                console.log(data);
+            success : function(data){
+                $(data).each(function(index, category) {
+                    $('.categories').append(
+                        '<a class="dropdown-item" href="/category.htm?category= '+ 
+                        encodeURIComponent(category)+
+                        '">'+ 
+                        titleUppercase(category)+
+                        '</a>'
+                    )
+                })
             }
         })
     }

@@ -8,11 +8,11 @@ $(function(){
 });
 
 var categorySetup = function(){
-    let categories= new categories()
-    categoro.getAllCategories()
+    let categories= new Categories()
+    categories.getAllCategories()
 }
 var productSetup = function(){
-    console.log('product here')
+    console.log('...')
 }
 
 function loadScript(url, callback){
@@ -23,4 +23,10 @@ function loadScript(url, callback){
     script.onreadystatechange = callback // callback is made when the script is full and ready
     script.onload = callback
     head.appendChild(script)
+}
+// function to turn fetched categories to uppercase using regex
+function titleUppercase(str){
+    return str.replace(/(?:^|\s)\w/g, function (match){
+        return match.toUpperCase()
+    })
 }
