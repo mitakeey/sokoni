@@ -10,9 +10,11 @@ $(function(){
 var categorySetup = function(){
     let categories= new Categories()
     categories.getAllCategories()
+    categories.getonecategory('electronics')
+
 }
 var productSetup = function(){
-    console.log('...')
+    console.log('products here')
 }
 
 function loadScript(url, callback){
