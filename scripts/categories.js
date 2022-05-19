@@ -28,19 +28,17 @@ class Categories{
         /* Using ajax */
         $.ajax({
             type: 'GET',
-            url : this.apiUrl + 'products/category/electronics',
+            url : this.apiUrl + 'products/category/' + slug,
             success : function(data){
-                console.log(data)
-                $(data).each(function(index, product) {
-                    $('.products').append(
-                        '<div class="col-md-4"><a href="/product.html?productid='+
-                        product.id +
-                        '"><img src="'+
-                        product.image+'"class="img=fluid">' +
-                        product.title +
-                        '</a></div'
-                    )
-                })
+                $('.products').append(
+                    '<div class="col-md-3">< div class="product"><a href="/product.html?productid='+
+                    product.id +
+                    '"><div class="image"><img src="'+
+                    product.image+'"class="img=fluid"></div><div class="info"><div class="title">' +
+                    product.title + '<br>$' +
+                    product.price +
+                    '</div></div></a></div></div>'
+                )
             }
         })
     }

@@ -1,5 +1,13 @@
-/* creating jquery's load function */
+/* adding html files*/
+$.get('/templates/navigation.html', function(data){
+    $('#nav-placeholder').replaceWith(data)
+})
+$.get('/templates/footer.html', function(data){
+    $('#footer-placeholder').replaceWith(data)
+})
 
+
+/* creating jquery's load function */
 
 $(function(){ 
     /*creating a function that pulls other js by referencing urls of script files to use */
@@ -10,11 +18,20 @@ $(function(){
 var categorySetup = function(){
     let categories= new Categories()
     categories.getAllCategories()
-    categories.getonecategory('electronics')
-
+    if(urlParam('category')){
+    categories.getonecategory(decodeURIComponent(urlParam('category'))) //decode... for formatting the displayed results
+   
+    }
 }
 var productSetup = function(){
-    console.log('products here')
+    let products= new Products()
+    if($('.products.new').length){
+        products.getNewProducts(8)
+    }
+    if(urlParam('productid')){
+    products.getOneProduct(urlParam('productid'))
+    }
+
 }
 
 function loadScript(url, callback){
@@ -31,4 +48,13 @@ function titleUppercase(str){
     return str.replace(/(?:^|\s)\w/g, function (match){
         return match.toUpperCase()
     })
+}
+
+function urlParam(name){
+    var results = new RegExp('[?&]' + name + "=(^&#]*)").exec(window.location.href) //to grab info from a url(mens clothing)
+    if(results = null){
+        return null
+    } else{
+        return results[1] || 0
+    }
 }

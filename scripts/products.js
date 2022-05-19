@@ -1,1 +1,47 @@
-/* */
+/*js ivolved when clicking inside the product */
+class Products{
+    constructor(){
+        this.apiUrl = 'https://fakestoreapi.com/'
+    }
+
+    getNewProducts(limit){
+        /* Using ajax */
+        $.ajax({
+            type: 'GET',
+            url : this.apiUrl + 'products?limit=' + limit + "&sort-desc",
+            success : function(data){
+                $(data).each(function(index, product) {
+                    $('.products').append(
+                        '<div class="col-md-3">< div class="product"><a href="/product.html?productid='+
+                        product.id +
+                        '"><div class="image"><img src="'+
+                        product.image+'"class="img=fluid"></div><div class="info"><div class="title">' +
+                        product.title + '<br>$' +
+                        product.price +
+                        '</div></div></a></div></div>'
+                    )
+                })
+            }
+        })
+    }
+
+    getOneProduct(id){
+         /* Using ajax */
+         $.ajax({
+            type: 'GET',
+            url : this.apiUrl + 'products/1' + id,
+            success : function(data){
+               console.log(data)
+               //parsing product info (.product) class product image
+               $('.product_image').html('<img src="' +
+               data.image +
+               '" class="img-fluid">')
+               $('.product_title').html(data.title)
+               $('.product_price').html('$' + data.price.toFixed(2))
+               $('.product_description').html('<p>' +
+               data.description +
+               '</p>')
+            }
+        })
+    }
+}
