@@ -11,8 +11,9 @@ $.get('/templates/footer.html', function(data){
 
 $(function(){ 
     /*creating a function that pulls other js by referencing urls of script files to use */
-    loadScript('scripts/products.js', productSetup) 
+    loadScript('scripts/products.js', productSetup)
     loadScript('scripts/categories.js', categorySetup)
+    loadScript('scripts/user.js', userInfoSetup) 
 });
 
 var categorySetup = function(){
@@ -32,6 +33,10 @@ var productSetup = function(){
     products.getOneProduct(urlParam('productid'))
     }
 
+}
+
+var userInfoSetup = function() {
+    let user = new User()
 }
 
 function loadScript(url, callback){
