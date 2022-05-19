@@ -37,6 +37,12 @@ var productSetup = function(){
 
 var userInfoSetup = function() {
     let user = new User()
+    $('form.login').submit(function(e){
+        e.preventDefault()
+        var username = $('#username').val()
+        var password = $('#password').val()
+        user.dologin(username, password)
+    })
 }
 
 function loadScript(url, callback){
