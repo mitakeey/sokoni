@@ -31,7 +31,13 @@ class Products{
             type: 'GET',
             url : this.apiUrl + 'products/1' + id,
             success : function(data){
-               console.log(data)
+               $('.breacrumb').html(
+                   'a href="/">Home</a><span class="sep">></span>a href="/category.html?category= ' +
+                   data.category + '">'+ 
+                   titleUppercase(data.category) +
+                   '</a><span class="sep">></span>' +
+                   data.title
+               )
                //parsing product info (.product) class product image
                $('.product_image').html('<img src="' +
                data.image +
