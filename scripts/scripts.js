@@ -1,5 +1,14 @@
+$(function(){ 
+    /*creating a function that pulls other js by referencing urls of script files to use */
+    loadScript('scripts/products.js', productSetup)
+    loadScript('scripts/categories.js', categorySetup)
+    loadScript('scripts/user.js', userInfoSetup) 
+});
 /* adding html files*/
 $.get('/templates/navigation.html', function(data){
+    if($('.logout').length){
+        localStorage.clear()
+    }
     $('#nav-placeholder').replaceWith(data)
 })
 $.get('/templates/footer.html', function(data){
@@ -9,12 +18,7 @@ $.get('/templates/footer.html', function(data){
 
 /* creating jquery's load function */
 
-$(function(){ 
-    /*creating a function that pulls other js by referencing urls of script files to use */
-    loadScript('scripts/products.js', productSetup)
-    loadScript('scripts/categories.js', categorySetup)
-    loadScript('scripts/user.js', userInfoSetup) 
-});
+
 
 var categorySetup = function(){
     let categories= new Categories()
