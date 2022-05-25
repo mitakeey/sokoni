@@ -1,4 +1,7 @@
-$(function(){ 
+$(function(){
+    if(localStorage.getItem("user")== null && $(".auth").length){
+        window.location.href = "/login.html" 
+    } //if info not present, it directs us to login page
     /*creating a function that pulls other js by referencing urls of script files to use */
     loadScript('scripts/products.js', productSetup)
     loadScript('scripts/categories.js', categorySetup)
@@ -10,6 +13,11 @@ $.get('/templates/navigation.html', function(data){
         localStorage.clear()
     }
     $('#nav-placeholder').replaceWith(data)
+    if(localStorage.getItem('user') == null ){
+        $('.accountNav').html('<li class="nav-item"><a class="nav-link text-white" href="/login.html">Login</a></li>')
+    }else{
+        $('.accountNav').html('<li class="nav-item"><a class="nav-link text-white" href="/logout.html">Log Out</a></li><li class="nav-item"><a class="nav-link text-white" href="/account.html">Account</a></li>')
+    }
 })
 $.get('/templates/footer.html', function(data){
     $('#footer-placeholder').replaceWith(data)
@@ -47,6 +55,10 @@ var userInfoSetup = function() {
         var password = $('#password').val()
         user.dologin(username, password)
     })
+    if($('.userAccount').length){
+        var userAccount = JSON.parse(localStorage.user)
+        user.getAccountInfro(userAccount)
+    }
 }
 
 function loadScript(url, callback){
