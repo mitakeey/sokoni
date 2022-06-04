@@ -4,8 +4,7 @@ class User {
         this.apiUrl = 'https://fakestoreapi.com/'
     }
 
-    getAccountInfro(user){
-        console.log(user)
+    getAccountInfo(user){
         $('#username').val(user.username)
         $('#firstname').val(user.name.firstname)
         $('#lastname').val(user.name.lastname)
@@ -22,7 +21,6 @@ class User {
             type : 'GET',
             url : this.apiUrl + 'users',
             success : function(data){
-                console.log(data)
                 // local storage
                 $(data).each(function(index, user){
                     if(user.username == username && user.password == password){
